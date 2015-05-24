@@ -24,7 +24,7 @@ namespace Graphs
 
             open.Enqueue(start);
             closed.Add(start);
-            
+
             while (open.Any())
             {
                 var i = open.Dequeue();
@@ -48,7 +48,7 @@ namespace Graphs
 
         public static bool IsComplete<T>(this IUndirectedGraph<T> graph)
         {
-            for(int i = 0; i < graph.Nodes.Count; i++)
+            for (int i = 0; i < graph.Nodes.Count; i++)
             {
                 // number of connections for each node must be greater or equal to the number of nodes in the graph - 1 to account for self-connected nodes
                 var neighbourCount = graph.Neighbors(i).Count();
@@ -57,6 +57,39 @@ namespace Graphs
             }
 
             return true;
+        }
+
+        public static bool IsAcyclic<T>(this IGraph<T> graph)
+        {
+            if (graph is IUndirectedGraph<T>)
+                return ((IUndirectedGraph<T>)graph).IsAcyclic();
+            else
+                throw new NotImplementedException();
+        }
+
+        public static bool IsAcyclic<T>(this IUndirectedGraph<T> graph)
+        {
+            var visited = new HashSet<int>();
+            var open = new Queue<int>();
+
+            var start = graph.RandomNode();
+            open.Enqueue(start);
+            visited.Add(start);
+
+            while (open.Any())
+            {
+                var i = open.Dequeue();
+
+                foreach (var n in graph.Neighbors(i))
+                {
+                    if (!visited.Add(n))
+                        return false;
+
+                    open.Enqueue(n);
+                }
+            }
+
+            return false;
         }
     }
 }
