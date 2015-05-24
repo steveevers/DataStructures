@@ -9,7 +9,7 @@ namespace GraphTests
     public class IsConnectedTests
     {
         [TestMethod, TestCategory("Graph Properties")]
-        public void Simple()
+        public void IsConnectedSimple()
         {
             var graph = GraphBuilder
                 .Sparse()

@@ -9,7 +9,7 @@ namespace GraphTests
     public class IsCompleteTests
     {
         [TestMethod, TestCategory("Graph Properties")]
-        public void Simple()
+        public void IsCompleteSimple()
         {
             var graph = GraphBuilder
                 .Sparse()
@@ -29,7 +29,7 @@ namespace GraphTests
                 }
             }
 
-            Assert.IsTrue(graph.IsConnected(), "Graph is not connected");
+            Assert.IsTrue(graph.IsComplete(), "Graph is not connected");
         }
     }
 }
