@@ -34,7 +34,7 @@ namespace Graphs
         {
             for (int i = 0; i < graph.Nodes.Count; i++)
             {
-                // number of connections for each node must be greater or equal to the number of nodes in the graph - 1 to account for self-connected nodes
+                // number of connections for each node must be greater or equal to the number of nodes in the graph (- 1 to account for self-connected nodes)
                 var neighbourCount = graph.Neighbors(i).Count();
                 if (neighbourCount < graph.Nodes.Count - 1)
                     return false;
@@ -48,27 +48,13 @@ namespace Graphs
             if (!graph.IsDirected)
                 return false;
 
-            var visited = new HashSet<int>();
-            var open = new Queue<int>();
-
-            var start = graph.RandomNode();
-            open.Enqueue(start);
-            visited.Add(start);
-
-            while (open.Any())
+            for (int i = 0; i < graph.Nodes.Count; i++)
             {
-                var i = open.Dequeue();
-
-                foreach (var n in graph.Neighbors(i))
-                {
-                    if (!visited.Add(n))
-                        return false;
-
-                    open.Enqueue(n);
-                }
+                if (graph.Search(i, i, Searching.SearchType.DFS))
+                    return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

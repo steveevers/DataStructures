@@ -14,7 +14,7 @@ namespace Graphs
         {
             this.Nodes = new List<T>();
 
-            this.IsDirected = IsDirected;
+            this.IsDirected = isDirected;
             this.IsWeighted = false;
         }
 

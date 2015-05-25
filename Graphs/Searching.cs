@@ -26,19 +26,17 @@ namespace Graphs
         public static bool DepthFirstSearch<T>(this IGraph<T> graph, int a, int b)
         {
             var visited = new HashSet<int>();
-            var queue = new Queue<int>();
-
-            visited.Add(a);
-            queue.Enqueue(a);
+            var queue = new Queue<int>(new List<int> { a });
 
             while (queue.Any())
             {
                 var i = queue.Dequeue();
-                if (i == b)
-                    return true;
-
+                
                 foreach (var n in graph.Neighbors(i))
                 {
+                    if (n == b)
+                        return true;
+
                     if (visited.Add(n))
                         queue.Enqueue(n);
                 }
@@ -50,19 +48,17 @@ namespace Graphs
         public static bool BreadthFirstSearch<T>(this IGraph<T> graph, int a, int b)
         {
             var visited = new HashSet<int>();
-            var stack = new Stack<int>();
-
-            visited.Add(a);
-            stack.Push(a);
+            var stack = new Stack<int>(new List<int> { a });
 
             while (stack.Any())
             {
                 var i = stack.Pop();
-                if (i == b)
-                    return true;
 
                 foreach (var n in graph.Neighbors(i))
                 {
+                    if (n == b)
+                        return true;
+
                     if (visited.Add(n))
                         stack.Push(n);
                 }
