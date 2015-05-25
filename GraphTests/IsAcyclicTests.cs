@@ -18,7 +18,7 @@ namespace GraphTests
                 .Weighted(false)
                 .Build<char>();
 
-            graph.AddNodes(Enumerable.Range('a', 'j' - 'a' + 1).Select(c => (char)c));
+            graph.AddNodes(Letters.Alphabet(Letters.A, Letters.J));
 
             Assert.IsFalse(graph.IsAcyclic(), "Undirected graphs cannot be acyclic");
         }
@@ -32,20 +32,14 @@ namespace GraphTests
                 .Weighted(false)
                 .Build<char>();
 
-            char a = 'a';
-            char b = 'b';
-            char c = 'c';
-            char d = 'd';
-            char e = 'e';
-
-            graph.AddNodes(new List<char> { a, b, c, d, e });
-            graph.AddEdge(a, b);
-            graph.AddEdge(a, c);
-            graph.AddEdge(b, c);
-            graph.AddEdge(b, d);
-            graph.AddEdge(b, e);
-            graph.AddEdge(c, d);
-            graph.AddEdge(d, e);
+            graph.AddNodes(Letters.Alphabet(Letters.A, Letters.E));
+            graph.AddEdge(Letters.A, Letters.B);
+            graph.AddEdge(Letters.B, Letters.C);
+            graph.AddEdge(Letters.B, Letters.C);
+            graph.AddEdge(Letters.B, Letters.D);
+            graph.AddEdge(Letters.B, Letters.E);
+            graph.AddEdge(Letters.C, Letters.D);
+            graph.AddEdge(Letters.D, Letters.E);
             
             Assert.IsTrue(graph.IsAcyclic(), "Graph is not acyclic");
         }

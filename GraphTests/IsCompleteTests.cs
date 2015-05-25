@@ -17,7 +17,7 @@ namespace GraphTests
                 .Weighted(false)
                 .Build<char>();
 
-            graph.AddNodes(Enumerable.Range('a', 'j' - 'a' + 1).Select(c => (char)c));
+            graph.AddNodes(Letters.Alphabet(Letters.A, Letters.J));
 
             foreach (var a in graph.Nodes)
             {
