@@ -10,21 +10,13 @@ namespace Graphs
     {
         public static bool IsConnected<T>(this IGraph<T> graph)
         {
-            if (graph is IUndirectedGraph<T>)
-                return ((IUndirectedGraph<T>)graph).IsConnected();
-            else
-                throw new NotImplementedException();
-        }
-
-        public static bool IsConnected<T>(this IUndirectedGraph<T> graph)
-        {
             var start = graph.RandomNode();
             var open = new Queue<int>();
             var closed = new HashSet<int>();
 
             open.Enqueue(start);
             closed.Add(start);
-            
+
             while (open.Any())
             {
                 var i = open.Dequeue();
@@ -40,19 +32,25 @@ namespace Graphs
 
         public static bool IsComplete<T>(this IGraph<T> graph)
         {
-            if (graph is IUndirectedGraph<T>)
-                return ((IUndirectedGraph<T>)graph).IsComplete();
-            else
-                throw new NotImplementedException();
-        }
-
-        public static bool IsComplete<T>(this IUndirectedGraph<T> graph)
-        {
-            for(int i = 0; i < graph.Nodes.Count; i++)
+            for (int i = 0; i < graph.Nodes.Count; i++)
             {
-                // number of connections for each node must be greater or equal to the number of nodes in the graph - 1 to account for self-connected nodes
+                // number of connections for each node must be greater or equal to the number of nodes in the graph (- 1 to account for self-connected nodes)
                 var neighbourCount = graph.Neighbors(i).Count();
                 if (neighbourCount < graph.Nodes.Count - 1)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static bool IsAcyclic<T>(this IGraph<T> graph)
+        {
+            if (!graph.IsDirected)
+                return false;
+
+            for (int i = 0; i < graph.Nodes.Count; i++)
+            {
+                if (graph.Search(i, i, Searching.SearchType.DFS))
                     return false;
             }
 

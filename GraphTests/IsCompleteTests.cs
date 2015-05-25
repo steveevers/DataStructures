@@ -15,17 +15,16 @@ namespace GraphTests
                 .Sparse()
                 .Directed(false)
                 .Weighted(false)
-                .Build<int>();
+                .Build<char>();
 
-            foreach (var i in Enumerable.Range(1, 10))
-                graph.AddNode(i);
+            graph.AddNodes(Enumerable.Range('a', 'j' - 'a' + 1).Select(c => (char)c));
 
-            for (int i = 0; i <= 9; i++)
+            foreach (var a in graph.Nodes)
             {
-                for (int j = 0; j <= 9; j++)
+                foreach (var b in graph.Nodes)
                 {
-                    if (i != j)
-                        graph.AddEdge(i, j);
+                    if (a != b)
+                        graph.AddEdge(a, b);
                 }
             }
 

@@ -13,5 +13,11 @@ namespace Graphs
         {
             return ThreadLocalRandom.Next(graph.Nodes.Count - 1);
         }
+
+        public static void AddNodes<T>(this IGraph<T> graph, IEnumerable<T> items)
+        {
+            foreach (var i in items)
+                graph.AddNode(i);
+        }
     }
 }
