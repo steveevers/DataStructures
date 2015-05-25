@@ -37,7 +37,7 @@ namespace GraphTests
 
         public static IEnumerable<char> Alphabet(char from, char to)
         {
-            return Enumerable.Range(to, from - to + 1).Select(c => (char)c);
+            return Enumerable.Range(from, to - from + 1).Select(c => (char)c);
         }
     }
 }
