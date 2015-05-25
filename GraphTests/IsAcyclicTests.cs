@@ -10,7 +10,7 @@ namespace GraphTests
     public class IsAcyclicTests
     {
         [TestMethod, TestCategory("Graph Properties")]
-        public void IsAcyclicSimple()
+        public void IsAcyclicForUndirectedGraphs()
         {
             var graph = GraphBuilder
                 .Sparse()
@@ -20,9 +20,7 @@ namespace GraphTests
 
             graph.AddNodes(Enumerable.Range(1, 10));
 
-            // TODO: Create acyclic graph
-
-            Assert.IsTrue(graph.IsAcyclic(), "Graph is not acyclic");
+            Assert.IsFalse(graph.IsAcyclic(), "Undirected graphs cannot be acyclic");
         }
     }
 }

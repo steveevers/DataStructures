@@ -29,12 +29,4 @@ namespace Graphs
         IEnumerable<int> Neighbors(int n);
         IEnumerable<int> Neighbors(T n);
     }
-
-    public interface IDirectedGraph<N> : IGraph<N>
-    {
-    }
-
-    public interface IUndirectedGraph<N> : IGraph<N>
-    {
-    }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
-    public class AdjacencyList<T> : Graph<T>, IUndirectedGraph<T>
+    public class AdjacencyList<T> : Graph<T>
     {
         private Dictionary<int, HashSet<int>> edges = new Dictionary<int, HashSet<int>>();
 
