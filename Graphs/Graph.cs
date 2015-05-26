@@ -20,73 +20,82 @@ namespace Graphs
         {
             get
             {
-                if (this.isConnected.HasValue)
-                    return this.isConnected.Value;
-
-                var start = this.RandomNode();
-                var open = new Queue<int>();
-                var closed = new HashSet<int>();
-
-                open.Enqueue(start);
-                closed.Add(start);
-
-                while (open.Any())
-                {
-                    var i = open.Dequeue();
-                    foreach (var n in this.Neighbors(i))
+                return this.isConnected.Match(
+                    some: (v) => v,
+                    none: () =>
                     {
-                        if (closed.Add(n))
-                            open.Enqueue(n);
-                    }
-                }
+                        var start = this.RandomNode();
+                        var open = new Queue<int>();
+                        var closed = new HashSet<int>();
 
-                this.isConnected = Maybe<bool>.Some(closed.Count == this.Nodes.Count);
-                return this.isConnected.Value;
+                        open.Enqueue(start);
+                        closed.Add(start);
+
+                        while (open.Any())
+                        {
+                            var i = open.Dequeue();
+                            foreach (var n in this.Neighbors(i))
+                            {
+                                if (closed.Add(n))
+                                    open.Enqueue(n);
+                            }
+                        }
+
+                        this.isConnected = Maybe<bool>.Some(closed.Count == this.Nodes.Count);
+                        return this.isConnected.Value;
+                    });
             }
         }
         public bool IsComplete
         {
             get
             {
-                if (this.isComplete.HasValue)
-                    return this.isComplete.Value;
-
-                for (int i = 0; i < this.Nodes.Count; i++)
-                {
-                    // number of connections for each node must be greater or equal to the number of nodes in the graph (- 1 to account for self-connected nodes)
-                    var neighbourCount = this.Neighbors(i).Count();
-                    if (neighbourCount < this.Nodes.Count - 1)
+                return this.isComplete.Match(
+                    some: (v) => v,
+                    none: () =>
                     {
-                        this.isComplete = Maybe<bool>.Some(false);
-                        return this.isComplete.Value;
-                    }
-                }
+                        for (int i = 0; i < this.Nodes.Count; i++)
+                        {
+                            // number of connections for each node must be greater or equal to the number of nodes in the graph (- 1 to account for self-connected nodes)
+                            var neighbourCount = this.Neighbors(i).Count();
+                            if (neighbourCount < this.Nodes.Count - 1)
+                            {
+                                this.isComplete = Maybe<bool>.Some(false);
+                                return this.isComplete.Value;
+                            }
+                        }
 
-                this.isComplete = Maybe<bool>.Some(true);
-                return this.isComplete.Value;
+                        this.isComplete = Maybe<bool>.Some(true);
+                        return this.isComplete.Value;
+                    });
             }
         }
         public bool IsAcyclic
         {
             get
             {
-                if (!this.IsDirected)
-                    return false;
-
-                if (this.isAcyclic.HasValue)
-                    return this.isAcyclic.Value;
-
-                for (int i = 0; i < this.Nodes.Count; i++)
-                {
-                    if (this.Search(i, i, Searching.SearchType.DFS))
+                return this.isAcyclic.Match(
+                    some: (v) => v,
+                    none: () =>
                     {
-                        this.isAcyclic = Maybe<bool>.Some(false);
-                        return this.isAcyclic.Value;
-                    }
-                }
+                        if (!this.IsDirected)
+                        {
+                            this.isAcyclic = Maybe<bool>.Some(false);
+                            return this.isAcyclic.Value;
+                        }
 
-                this.isAcyclic = Maybe<bool>.Some(true);
-                return this.isAcyclic.Value;
+                        for (int i = 0; i < this.Nodes.Count; i++)
+                        {
+                            if (this.Search(i, i, Searching.SearchType.DFS))
+                            {
+                                this.isAcyclic = Maybe<bool>.Some(false);
+                                return this.isAcyclic.Value;
+                            }
+                        }
+
+                        this.isAcyclic = Maybe<bool>.Some(true);
+                        return this.isAcyclic.Value;
+                    });
             }
         }
 
