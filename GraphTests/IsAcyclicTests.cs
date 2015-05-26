@@ -20,7 +20,7 @@ namespace GraphTests
 
             graph.AddNodes(Letters.Alphabet(Letters.A, Letters.J));
 
-            Assert.IsFalse(graph.IsAcyclic(), "Undirected graphs cannot be acyclic");
+            Assert.IsFalse(graph.IsAcyclic, "Undirected graphs cannot be acyclic");
         }
 
         [TestMethod, TestCategory("Graph Properties")]
@@ -41,7 +41,7 @@ namespace GraphTests
             graph.AddEdge(Letters.C, Letters.D);
             graph.AddEdge(Letters.D, Letters.E);
             
-            Assert.IsTrue(graph.IsAcyclic(), "Graph is not acyclic");
+            Assert.IsTrue(graph.IsAcyclic, "Graph is not acyclic");
         }
     }
 }
