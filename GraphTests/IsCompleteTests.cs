@@ -28,7 +28,7 @@ namespace GraphTests
                 }
             }
 
-            Assert.IsTrue(graph.IsComplete(), "Graph is not connected");
+            Assert.IsTrue(graph.IsComplete, "Graph is not connected");
         }
     }
 }

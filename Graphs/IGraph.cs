@@ -11,6 +11,9 @@ namespace Graphs
         IList<T> Nodes { get; }
         bool IsDirected { get; }
         bool IsWeighted { get; }
+        bool IsConnected { get; }
+        bool IsComplete { get; }
+        bool IsAcyclic { get; }
 
         bool EdgeExists(int from, int to);
         bool EdgeExists(T from, T to);
