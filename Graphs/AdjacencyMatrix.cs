@@ -8,7 +8,7 @@ namespace Graphs
 {
     public class AdjacencyMatrix<T> : Graph<T>
     {
-        private float[,] adjacency;
+        private float[,] edges;
 
         private Action<int, int, float> addEdge;
         private Action<int, int> removeEdge;
@@ -16,12 +16,12 @@ namespace Graphs
         public AdjacencyMatrix(bool isDirected, bool isWeighted, int size)
         {
             this.Nodes = new List<T>(size);
-            this.adjacency = new float[size, size];
+            this.edges = new float[size, size];
             for (int i = 0; i < this.Nodes.Count; i++)
             {
                 for (int j = 0; j < this.Nodes.Count; j++)
                 {
-                    this.adjacency[i, j] = -1;
+                    this.edges[i, j] = -1;
                 }
             }
 
@@ -42,7 +42,7 @@ namespace Graphs
 
         public override bool EdgeExists(int from, int to)
         {
-            return this.adjacency[from, to] >= 0;
+            return this.edges[from, to] >= 0;
         }
 
         public override bool EdgeExists(T from, T to)
@@ -53,7 +53,7 @@ namespace Graphs
 
         public override float EdgeWeight(int from, int to)
         {
-            return this.adjacency[from, to];
+            return this.edges[from, to];
         }
 
         public override float EdgeWeight(T from, T to)
@@ -62,14 +62,33 @@ namespace Graphs
             return EdgeWeight(pair.Item1, pair.Item2);
         }
 
-        #region AddEdge
+		protected override void AddNodeByType(T n) {
+			var rows = this.edges.GetLength(0);
+			var cols = this.edges.GetLength(1);
 
-        public override void AddEdge(int from, int to, float weight)
+			var nEdges = new float[this.edges.GetLength(0) + 1, this.edges.GetLength(1) + 1];
+			for (int r = 0; r < rows; r++) {
+				for (int c = 0; c < cols; c++) {
+					if (r == rows - 1 || c == cols - 1)
+						nEdges[r, c] = 0;
+					else
+						nEdges[r, c] = this.edges[r, c];
+				}
+			}
+		}
+
+		protected override void RemoveNodeByType(T n) {
+			throw new NotImplementedException();
+		}
+
+		#region AddEdge
+
+		protected override void AddEdgeByIndex(int from, int to, float weight)
         {
             this.addEdge(from, to, weight);
         }
 
-        public override void AddEdge(T from, T to, float weight = -1)
+        protected override void AddEdgeByType(T from, T to, float weight = -1)
         {
             var pair = this.GetNodePair(from, to);
             this.addEdge(pair.Item1, pair.Item2, weight);
@@ -77,25 +96,25 @@ namespace Graphs
 
         private void addEdgeDirected(int from, int to, float weight)
         {
-            this.adjacency[from, to] = weight;
+            this.edges[from, to] = weight;
         }
 
         private void addEdgeUndirected(int from, int to, float weight)
         {
-            this.adjacency[from, to] = weight;
-            this.adjacency[to, from] = weight;
+            this.edges[from, to] = weight;
+            this.edges[to, from] = weight;
         }
 
         #endregion
 
         #region RemoveEdge
 
-        public override void RemoveEdge(int from, int to)
+        protected override void RemoveEdgeByIndex(int from, int to)
         {
             this.removeEdge(from, to);
         }
 
-        public override void RemoveEdge(T from, T to)
+		protected override void RemoveEdgeByType(T from, T to)
         {
             var pair = this.GetNodePair(from, to);
             this.removeEdge(pair.Item1, pair.Item2);
@@ -103,13 +122,13 @@ namespace Graphs
 
         private void removeEdgeDirected(int from, int to)
         {
-            this.adjacency[from, to] = -1;
+            this.edges[from, to] = -1;
         }
 
         private void removeEdgeUndirected(int from, int to)
         {
-            this.adjacency[from, to] = -1;
-            this.adjacency[to, from] = -1;
+            this.edges[from, to] = -1;
+            this.edges[to, from] = -1;
         }
 
         #endregion
@@ -120,7 +139,7 @@ namespace Graphs
         {
             for (int i = 0; i < this.Nodes.Count; i++)
             {
-                if (this.adjacency[n, i] >= 0)
+                if (this.edges[n, i] >= 0)
                     yield return i;
             }
         }

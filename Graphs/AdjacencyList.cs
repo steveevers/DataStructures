@@ -39,36 +39,43 @@ namespace Graphs
             return 0;
         }
 
-        public override void AddNode(T n)
+        protected override void AddNodeByType(T n)
         {
-            this.Nodes.Add(n);
             this.edges.Add(this.Nodes.Count - 1, new HashSet<int>());
         }
 
-        public override void AddEdge(int from, int to, float weight = -1)
+		protected override void RemoveNodeByType(T n) {
+			foreach (var kvp in this.edges) {
+				kvp.Value.RemoveWhere(i => i.Equals(n));
+			}
+
+			this.edges.Remove(this.Nodes.IndexOf(n));
+		}
+
+		protected override void AddEdgeByIndex(int from, int to, float weight)
         {
             this.edges[from].Add(to);
             if (!this.IsDirected)
                 this.edges[to].Add(from);
         }
 
-        public override void AddEdge(T from, T to, float weight = -1)
+        protected override void AddEdgeByType(T from, T to, float weight)
         {
             var pair = this.GetNodePair(from, to);
-            this.AddEdge(pair.Item1, pair.Item2, weight);
+			this.AddEdgeByIndex(pair.Item1, pair.Item2, weight);
         }
 
-        public override void RemoveEdge(int from, int to)
+        protected override void RemoveEdgeByIndex(int from, int to)
         {
             this.edges[from].Remove(to);
             if (!this.IsDirected)
                 this.edges[to].Remove(from);
         }
 
-        public override void RemoveEdge(T from, T to)
+		protected override void RemoveEdgeByType(T from, T to)
         {
             var pair = this.GetNodePair(from, to);
-            this.RemoveEdge(pair.Item1, pair.Item2);
+			this.RemoveEdgeByIndex(pair.Item1, pair.Item2);
         }
 
         public override IEnumerable<int> Neighbors(int n)
