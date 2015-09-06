@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphTests", "GraphTests\Gr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miscellaneous", "Miscellaneous\Miscellaneous\Miscellaneous.csproj", "{512A466A-3234-4232-8F75-C4874AC8D59F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkovChain", "MarkovChain\MarkovChain.csproj", "{C73474F7-42E4-4F43-B622-57978EEA4C87}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{512A466A-3234-4232-8F75-C4874AC8D59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{512A466A-3234-4232-8F75-C4874AC8D59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{512A466A-3234-4232-8F75-C4874AC8D59F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
