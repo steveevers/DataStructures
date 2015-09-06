@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Graphs</RootNamespace>
     <AssemblyName>Graphs</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,9 +55,9 @@
       <Project>{1d65a0f1-c0e6-4757-9d1f-7071fa880f21}</Project>
       <Name>Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilities\Utilities.csproj">
-      <Project>{3353de09-a21f-4352-9140-65ea5fb91f24}</Project>
-      <Name>Utilities</Name>
+    <ProjectReference Include="..\Miscellaneous\Miscellaneous\Miscellaneous.csproj">
+      <Project>{512a466a-3234-4232-8f75-c4874ac8d59f}</Project>
+      <Name>Miscellaneous</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
