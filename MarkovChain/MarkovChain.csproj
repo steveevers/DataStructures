@@ -54,9 +54,9 @@
       <Project>{6e5e7a83-7e35-48b8-a0ac-b30651a061a0}</Project>
       <Name>Graphs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilities\Utilities.csproj">
-      <Project>{3353de09-a21f-4352-9140-65ea5fb91f24}</Project>
-      <Name>Utilities</Name>
+    <ProjectReference Include="..\Miscellaneous\Miscellaneous\Miscellaneous.csproj">
+      <Project>{512a466a-3234-4232-8f75-c4874ac8d59f}</Project>
+      <Name>Miscellaneous</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

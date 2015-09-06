@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Graphs;
-using Utilities;
+using Miscellaneous;
 
 namespace MarkovChain
 {
