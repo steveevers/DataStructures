@@ -1,4 +1,4 @@
-﻿using Collections;
+﻿using SE.Collections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Graphs
+namespace SE.Graphs
 {
     public static class AStar
     {
