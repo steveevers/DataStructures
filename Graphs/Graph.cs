@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Miscellaneous;
 
-namespace Graphs
+namespace SE.Graphs
 {
 	public abstract class Graph<T> : IGraph<T>
 	{

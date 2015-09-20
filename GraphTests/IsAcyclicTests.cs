@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Graphs;
+using SE.Graphs;
 using System.Linq;
 using System.Collections.Generic;
 
