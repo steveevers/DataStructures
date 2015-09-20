@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphTests", "GraphTests\GraphTests.csproj", "{0E3E6E45-49A7-4D10-8E65-9E0B5AA76FAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miscellaneous", "Miscellaneous\Miscellaneous\Miscellaneous.csproj", "{512A466A-3234-4232-8F75-C4874AC8D59F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkovChain", "MarkovChain\MarkovChain.csproj", "{C73474F7-42E4-4F43-B622-57978EEA4C87}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{0E3E6E45-49A7-4D10-8E65-9E0B5AA76FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3E6E45-49A7-4D10-8E65-9E0B5AA76FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3E6E45-49A7-4D10-8E65-9E0B5AA76FAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{512A466A-3234-4232-8F75-C4874AC8D59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{512A466A-3234-4232-8F75-C4874AC8D59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{512A466A-3234-4232-8F75-C4874AC8D59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{512A466A-3234-4232-8F75-C4874AC8D59F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C73474F7-42E4-4F43-B622-57978EEA4C87}.Release|Any CPU.ActiveCfg = Release|Any CPU

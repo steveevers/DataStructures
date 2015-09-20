@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Miscellaneous, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Miscellaneous.1.0.0-CI00000\lib\net452\Miscellaneous.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,10 +60,9 @@
       <Project>{1d65a0f1-c0e6-4757-9d1f-7071fa880f21}</Project>
       <Name>Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Miscellaneous\Miscellaneous\Miscellaneous.csproj">
-      <Project>{512a466a-3234-4232-8f75-c4874ac8d59f}</Project>
-      <Name>Miscellaneous</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
