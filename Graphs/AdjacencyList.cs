@@ -44,15 +44,17 @@ namespace SE.Graphs
             this.edges.Add(this.Nodes.Count - 1, new HashSet<int>());
         }
 
-		protected override void RemoveNodeByType(T n) {
-			foreach (var kvp in this.edges) {
-				kvp.Value.RemoveWhere(i => i.Equals(n));
-			}
-
-			this.edges.Remove(this.Nodes.IndexOf(n));
+	protected override void RemoveNodeByType(T n) 
+	{
+		foreach (var kvp in this.edges) 
+		{
+			kvp.Value.RemoveWhere(i => i.Equals(n));
 		}
 
-		protected override void AddEdgeByIndex(int from, int to, float weight)
+		this.edges.Remove(this.Nodes.IndexOf(n));
+	}
+
+	protected override void AddEdgeByIndex(int from, int to, float weight)
         {
             this.edges[from].Add(to);
             if (!this.IsDirected)
@@ -72,7 +74,7 @@ namespace SE.Graphs
                 this.edges[to].Remove(from);
         }
 
-		protected override void RemoveEdgeByType(T from, T to)
+	protected override void RemoveEdgeByType(T from, T to)
         {
             var pair = this.GetNodePair(from, to);
 			this.RemoveEdgeByIndex(pair.Item1, pair.Item2);
