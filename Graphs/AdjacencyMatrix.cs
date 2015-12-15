@@ -62,28 +62,28 @@ namespace SE.Graphs
             return EdgeWeight(pair.Item1, pair.Item2);
         }
 
-		protected override void AddNodeByType(T n) {
-			var rows = this.edges.GetLength(0);
-			var cols = this.edges.GetLength(1);
+	protected override void AddNodeByType(T n) {
+		var rows = this.edges.GetLength(0);
+		var cols = this.edges.GetLength(1);
 
-			var nEdges = new float[this.edges.GetLength(0) + 1, this.edges.GetLength(1) + 1];
-			for (int r = 0; r < rows; r++) {
-				for (int c = 0; c < cols; c++) {
-					if (r == rows - 1 || c == cols - 1)
-						nEdges[r, c] = 0;
-					else
-						nEdges[r, c] = this.edges[r, c];
-				}
+		var nEdges = new float[this.edges.GetLength(0) + 1, this.edges.GetLength(1) + 1];
+		for (int r = 0; r < rows; r++) {
+			for (int c = 0; c < cols; c++) {
+				if (r == rows - 1 || c == cols - 1)
+					nEdges[r, c] = 0;
+				else
+					nEdges[r, c] = this.edges[r, c];
 			}
 		}
+	}
 
-		protected override void RemoveNodeByType(T n) {
-			throw new NotImplementedException();
-		}
+	protected override void RemoveNodeByType(T n) {
+		throw new NotImplementedException();
+	}
 
-		#region AddEdge
+	#region AddEdge
 
-		protected override void AddEdgeByIndex(int from, int to, float weight)
+	protected override void AddEdgeByIndex(int from, int to, float weight)
         {
             this.addEdge(from, to, weight);
         }
@@ -114,7 +114,7 @@ namespace SE.Graphs
             this.removeEdge(from, to);
         }
 
-		protected override void RemoveEdgeByType(T from, T to)
+	protected override void RemoveEdgeByType(T from, T to)
         {
             var pair = this.GetNodePair(from, to);
             this.removeEdge(pair.Item1, pair.Item2);
