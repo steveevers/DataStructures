@@ -63,8 +63,8 @@ namespace SE.Graphs
 
         protected override void AddEdgeByType(T from, T to, float weight)
         {
-            var pair = this.GetNodePair(from, to);
-			this.AddEdgeByIndex(pair.Item1, pair.Item2, weight);
+        	var pair = this.GetNodePair(from, to);
+		this.AddEdgeByIndex(pair.Item1, pair.Item2, weight);
         }
 
         protected override void RemoveEdgeByIndex(int from, int to)
